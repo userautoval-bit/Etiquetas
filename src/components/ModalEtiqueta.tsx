@@ -15,7 +15,7 @@ const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
       <div className="modal-content">
         <div className="modal-header">
           <h2>Visualização da Etiqueta</h2>
-          <button className="btn-close" onClick={onClose}>X</button>
+          <button className="btn-close-green" onClick={onClose}>✕</button>
         </div>
 
         <div id="etiqueta-print" className="etiqueta-box">
@@ -23,14 +23,15 @@ const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
             <span className="label-topo">REMETENTE</span>
             <div className="remetente-info">
               <p className="txt-bold">{dados.remetenteNome}</p>
-              <div className="linha-cnpj-barcode">
-                <span>{dados.remetenteCNPJ}</span>
-                {/* Código de barras agora usa a Chave de Acesso da Nota */}
-                <div className="barcode-wrapper">
+              
+              {/* Layout horizontal para CNPJ e Barcode */}
+              <div className="linha-cnpj-barcode-horizontal">
+                <span className="cnpj-texto">CNPJ: {dados.remetenteCNPJ}</span>
+                <div className="barcode-container">
                   <ReactBarcode 
                     value={String(dados.chaveAcesso)} 
-                    height={40} 
-                    width={1.2}
+                    height={35} 
+                    width={1.1}
                     displayValue={false} 
                   />
                 </div>
@@ -43,9 +44,8 @@ const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
             <h1 className="dest-nome">{dados.destNome}</h1>
             <p className="dest-endereco">{dados.destLgr}, {dados.destNro} - {dados.destBairro}</p>
             <div className="dest-cidade-uf">
-               <span>{dados.destMun}</span>
-               <span>{dados.destUF}</span>
-               <span>{dados.destCEP}</span>
+               <span>{dados.destMun} - {dados.destUF}</span>
+               <span className="negrito">{dados.destCEP}</span>
             </div>
           </div>
 
@@ -59,9 +59,9 @@ const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
           </div>
         </div>
 
-        <div className="modal-acoes">
-          <button className="btn-imprimir-modal" onClick={() => window.print()}>
-            Confirmar e Imprimir
+        <div className="modal-footer-acoes">
+          <button className="btn-imprimir-destaque" onClick={() => window.print()}>
+            🖨️ IMPRIMIR ETIQUETA
           </button>
         </div>
       </div>
