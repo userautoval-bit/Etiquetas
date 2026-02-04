@@ -1,0 +1,55 @@
+body {
+  background-color: #21ae6fc7;
+}
+
+h1 {
+  color: white;
+}
+
+/* Container para centralizar ou dar espaçamento */
+.container-upload {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinhado à esquerda como no seu print */
+}
+
+/* Esconde o input feio do navegador */
+.input-file-hidden {
+  display: none;
+}
+
+/* O "Botão" customizado (que na verdade é a label) */
+.btn-principal-custom {
+  display: inline-block;
+  padding: 40px 60px; /* Tamanho grande */
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2); /* Fundo quase transparente */
+  color: white;
+  font-size: 1.5rem; /* Letra grande */
+  font-weight: bold;
+  border: 2px dashed white; /* Borda branca */
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Efeito ao passar o mouse */
+.btn-principal-custom:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.02);
+}
+
+/* Estilo para o botão de baixo (Gerar Etiquetas) */
+.btn-inferior-custom {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  color: #21ae6f; /* Cor verde do seu fundo */
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
