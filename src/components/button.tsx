@@ -29,10 +29,7 @@ function Button({ onFileSelect }: Props) {
             <span>{fileName}</span>
          </label>
 
-         {/* Feedback visual extra se o arquivo for selecionado */}
-         {fileName !== "Selecionar arquivo XML" && (
-            <p className="file-ready-msg">✓ Arquivo carregado com sucesso!</p>
-         )}
+        
       </div>
    );
 }

@@ -49,10 +49,14 @@ const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
             </div>
           </div>
 
-          <div className="secao-footer">
-            <div className="footer-item"><strong>NF:</strong> {dados.nNF}</div>
-            <div className="footer-item">{dados.qVol} {dados.esp}</div>
-          </div>
+<div className="secao-footer">
+  <div className="nf-container">
+    NF: <span className="nf-valor">{dados.nNF}</span>
+  </div>
+  <div className="vol-info">
+    {dados.qVol} {dados.esp}
+  </div>
+</div>
           
           <div className="transportadora-nome">
             {dados.transportadora}

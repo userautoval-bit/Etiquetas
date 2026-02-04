@@ -1,55 +1,195 @@
+/* ==========================================================
+   1. LAYOUT DA HOME (Página Verde)
+   ========================================================== */
 body {
   background-color: #21ae6fc7;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding-top: 50px;       
+  min-height: 100vh;
+  font-family: sans-serif;
 }
 
-h1 {
-  color: white;
-}
-
-/* Container para centralizar ou dar espaçamento */
 .container-upload {
-  margin: 20px 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinhado à esquerda como no seu print */
+  align-items: center;    
+  width: 100%;
+  gap: 20px;
 }
 
-/* Esconde o input feio do navegador */
+.logo-autoval {
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+
+/* Esconde o input padrão do navegador */
 .input-file-hidden {
-  display: none;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
-/* O "Botão" customizado (que na verdade é a label) */
+/* BOTÃO PRINCIPAL (Dashed - 40% de largura) */
 .btn-principal-custom {
-  display: inline-block;
-  padding: 40px 60px; /* Tamanho grande */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.2); /* Fundo quase transparente */
+  background-color: rgba(255, 255, 255, 0.2);
   color: white;
-  font-size: 1.5rem; /* Letra grande */
-  font-weight: bold;
-  border: 2px dashed white; /* Borda branca */
+  border: 2px dashed white;
   border-radius: 12px;
-  transition: all 0.3s ease;
+  
+  /* Ajuste solicitado: 40% da largura */
+  width: 40%;           
+  min-width: 320px;     
+  max-width: 550px;     
+  
   text-align: center;
+  word-break: break-all; 
+  transition: all 0.3s ease;
 }
 
-/* Efeito ao passar o mouse */
 .btn-principal-custom:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.02);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Estilo para o botão de baixo (Gerar Etiquetas) */
 .btn-inferior-custom {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #ffffff;
-  color: #21ae6f; /* Cor verde do seu fundo */
+  padding: 12px 35px;
+  background-color: white;
+  color: #21ae6f;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
   text-transform: uppercase;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* ==========================================================
+   2. VISUAL DO MODAL (Na tela)
+   ========================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 850px;
+  position: relative;
+}
+
+.btn-close-green {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #21ae6f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ==========================================================
+   3. DESIGN DA ETIQUETA (Visual e Impressão)
+   ========================================================== */
+.etiqueta-box {
+  width: 100%;
+  border: 2px solid black;
+  padding: 15px;
+  color: black;
+  background: white;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Nome do Destinatário GIGANTE */
+.dest-nome {
+  font-size: 3.2rem; 
+  font-weight: 950;
+  margin: 8px 0;
+  line-height: 1.0;
+  text-transform: uppercase;
+}
+
+/* NF em destaque */
+.nf-valor { 
+  font-size: 3.5rem; 
+  font-weight: 900; 
+}
+
+/* CAMPO RETIRA (Garante destaque no papel) */
+.retira-info {
+  font-size: 3rem;
+  font-weight: 900;
+  border-top: 2px solid black;
+  margin-top: 10px;
+  padding-top: 5px;
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   4. REGRAS DE IMPRESSÃO (Força Topo e Fontes)
+   ========================================================== */
+@media print {
+  @page { margin: 0; size: auto; }
+  
+  body * { visibility: hidden !important; }
+
+  /* Ajusta o container para o topo do papel A4 */
+  .modal-overlay, .modal-content {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  #etiqueta-print, #etiqueta-print * {
+    visibility: visible !important;
+  }
+
+  #etiqueta-print {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    padding: 1.2cm !important; /* Margem de segurança contra cortes */
+    border: none !important;
+  }
+
+  /* Reforço das fontes na impressão */
+  .dest-nome { font-size: 3.5rem !important; }
+  .nf-valor { font-size: 4rem !important; }
+  .retira-info { font-size: 3.5rem !important; border-top: 2px solid black !important; }
+
+  /* Esconde botões no papel */
+  .btn-close-green, .btn-imprimir-destaque, .modal-header {
+    display: none !important;
+  }
+}
