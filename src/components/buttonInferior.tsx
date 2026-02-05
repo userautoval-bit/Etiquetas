@@ -72,11 +72,11 @@ function ButtonInferior({ file, onDadosExtraidos }: Props) {
   };
 
   return (
-    <div className="pg-btn-inferior">
-      <button className="btn-inferior" onClick={handleProcessarXML}>
-        <span className="sptx-inferior">Visualizar Modelo</span>
-      </button>
-    </div>
+    <div className="acao-inferior">
+    <button className="btn-visualizar" onClick={handleProcessarXML}>
+      Visualizar Modelo
+    </button>
+  </div>
   );
 }
 

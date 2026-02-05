@@ -22,28 +22,27 @@ function Home() {
 
   return (
     <div className="home-container">
-      <img 
-        src="https://ik.imagekit.io/wuhybmc8j/cropped-logo-autoval-correto-1-1.png" 
-        alt="Autoval Logo" 
-        className="logo-topo"
-        style={{ marginBottom: '2rem', maxWidth: '250px' }}
-      />
+  <img
+    src="https://ik.imagekit.io/wuhybmc8j/cropped-logo-autoval-correto-1-1.png"
+    alt="Autoval"
+    className="logo-topo"
+  />
 
-      <Button onFileSelect={(file) => setXmlFile(file)} />
+  <Button onFileSelect={setXmlFile} />
 
-      <ButtonInferior 
-        file={xmlFile} 
-        onDadosExtraidos={aoProcessarDados} 
-      />
+  <ButtonInferior
+    file={xmlFile}
+    onDadosExtraidos={aoProcessarDados}
+  />
 
-      {isModalOpen && dadosEtiqueta && (
-        <ModalEtiqueta 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)} 
-          dados={dadosEtiqueta} 
-        />
-      )}
-    </div>
+  {isModalOpen && dadosEtiqueta && (
+    <ModalEtiqueta
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      dados={dadosEtiqueta}
+    />
+  )}
+</div>
   );
 }
 
