@@ -16,8 +16,10 @@
   background: white;
   padding: 25px;
   border-radius: 12px;
-  max-width: 850px;
+  max-width: 900px;
   width: 95%;
+  max-height: 90vh;        /* 🔑 nunca estoura a tela */
+  overflow: auto;         /* 🔑 rolagem interna */
   position: relative;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
