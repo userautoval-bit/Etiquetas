@@ -10,64 +10,85 @@ interface Props {
 const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
   if (!isOpen || !dados) return null;
 
+  const totalVolumes = Number(dados.qVol) || 1;
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
+
         <div className="modal-header">
-          <h2>Visualização da Etiqueta</h2>
+          <h2 className="modal-titulo">Visualização da Etiqueta</h2>
           <button className="btn-close-green" onClick={onClose}>✕</button>
         </div>
 
-        <div id="etiqueta-print" className="etiqueta-box">
-          <div className="secao-remetente">
-            <span className="label-topo">REMETENTE</span>
-            <div className="remetente-info">
-              <p className="txt-bold">{dados.remetenteNome}</p>
-              
-              {/* Layout horizontal para CNPJ e Barcode */}
-              <div className="linha-cnpj-barcode-horizontal">
-                <span className="cnpj-texto">CNPJ: {dados.remetenteCNPJ}</span>
-                <div className="barcode-container">
-                  <ReactBarcode 
-                    value={String(dados.chaveAcesso)} 
-                    height={35} 
-                    width={1.1}
-                    displayValue={false} 
-                  />
+        {/* === ETIQUETAS === */}
+        <div className="etiquetas-wrapper-scroll">
+          {Array.from({ length: totalVolumes }).map((_, index) => (
+            <div className="print-page" key={index}>
+              <div className="etiqueta-box etiqueta-print">
+
+                {/* REMETENTE */}
+                <div className="secao-remetente">
+                  <span className="label-topo">REMETENTE</span>
+                  <p className="txt-bold">{dados.remetenteNome}</p>
+
+                  <div className="linha-cnpj-barcode-horizontal">
+                    <span className="cnpj-texto">
+                      CNPJ: {dados.remetenteCNPJ}
+                    </span>
+
+                    <ReactBarcode
+                      value={String(dados.chaveAcesso)}
+                      height={35}
+                      width={1.1}
+                      displayValue={false}
+                    />
+                  </div>
                 </div>
+
+                {/* DESTINATÁRIO */}
+                <div className="secao-destinatario">
+                  <span className="label-topo">DESTINATÁRIO</span>
+                  <h1 className="dest-nome">{dados.destNome}</h1>
+
+                  <p>
+                    {dados.destLgr}, {dados.destNro} - {dados.destBairro}
+                  </p>
+
+                  <strong>
+                    {dados.destMun} - {dados.destUF} • {dados.destCEP}
+                  </strong>
+                </div>
+
+                {/* RODAPÉ */}
+                <div className="secao-footer">
+                  <div className="nf-container">
+                    NF: <span className="nf-valor">{dados.nNF}</span>
+                  </div>
+
+                  <div className="vol-info">
+                    {index + 1}/{totalVolumes} {dados.esp || 'CX'}
+                  </div>
+                </div>
+
+                <div className="transportadora-nome">
+                  {dados.transportadora}
+                </div>
+
               </div>
             </div>
-          </div>
-
-          <div className="secao-destinatario">
-            <span className="label-topo">DESTINATÁRIO</span>
-            <h1 className="dest-nome">{dados.destNome}</h1>
-            <p className="dest-endereco">{dados.destLgr}, {dados.destNro} - {dados.destBairro}</p>
-            <div className="dest-cidade-uf">
-               <span>{dados.destMun} - {dados.destUF}</span>
-               <span className="negrito">{dados.destCEP}</span>
-            </div>
-          </div>
-
-<div className="secao-footer">
-  <div className="nf-container">
-    NF: <span className="nf-valor">{dados.nNF}</span>
-  </div>
-  <div className="vol-info">
-    {dados.qVol} {dados.esp}
-  </div>
-</div>
-          
-          <div className="transportadora-nome">
-            {dados.transportadora}
-          </div>
+          ))}
         </div>
 
         <div className="modal-footer-acoes">
-          <button className="btn-imprimir-destaque" onClick={() => window.print()}>
-            🖨️ IMPRIMIR ETIQUETA
+          <button
+            className="btn-imprimir-destaque"
+            onClick={() => window.print()}
+          >
+            🖨️ IMPRIMIR {totalVolumes} ETIQUETA{totalVolumes > 1 ? 'S' : ''}
           </button>
         </div>
+
       </div>
     </div>
   );
