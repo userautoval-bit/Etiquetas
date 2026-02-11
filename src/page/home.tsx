@@ -3,7 +3,7 @@ import Button from '../components/button';
 import ButtonInferior from '../components/buttonInferior';
 import ModalEtiqueta from '../components/ModalEtiqueta';
 import '../App.css';
-import { testePdf } from '../utils/testePDF';
+
 
 function Home() {
   const [xmlFile, setXmlFile] = useState<File | null>(null);
@@ -35,7 +35,7 @@ function Home() {
     file={xmlFile}
     onDadosExtraidos={aoProcessarDados}
   />
-  <button onClick={testePdf}>TESTAR PDF</button>
+
 
   {isModalOpen && dadosEtiqueta && (
     <ModalEtiqueta

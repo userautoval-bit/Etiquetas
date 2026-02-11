@@ -48,7 +48,7 @@
    ========================================================== */
 
 .etiqueta-box {
-  border: 3px solid black;
+  border: 2px solid rgb(0, 0, 0);
   padding: 15px;
   background: white;
   display: flex;
@@ -57,14 +57,13 @@
 }
 
 .dest-nome {
-  font-size: 3.2rem;
+  font-size: 3.0rem;
   font-weight: 950;
   margin: 10px 0;
   text-transform: uppercase;
 }
 
 .secao-footer {
-  border-top: 3px solid black;
   display: flex;
   justify-content: space-between;
   margin-top: auto;
@@ -77,84 +76,48 @@
 }
 
 .vol-info {
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   font-weight: 800;
 }
 
 .transportadora-nome {
-  font-weight: bold;
-  font-size: 1.8rem;
-  margin-top: 8px;
+  font-weight: 900;
+  font-size: 1.3rem;
+  margin-top: 7px;
 }
 
 /* ==========================================================
-   IMPRESSÃO (ESTÁVEL)
+   AÇÕES DO MODAL
    ========================================================== */
 
-@media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
-
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    height: auto !important;
-  }
-
-  body * {
-    visibility: hidden !important;
-  }
-
-  .modal-overlay,
-  .modal-content,
-  .etiquetas-wrapper-scroll,
-  .etiqueta-box,
-  .etiqueta-box * {
-    visibility: visible !important;
-  }
-
-  .modal-overlay {
-    position: static !important;
-    background: white !important;
-  }
-
-  .modal-content {
-    position: static !important;
-    width: 210mm !important;
-    max-width: none !important;
-    padding: 0 !important;
-  }
-
-  .etiquetas-wrapper-scroll {
-    display: block !important;
-  }
-
-  .etiqueta-box {
-    min-height: 96mm !important;
-    padding: 6mm 10mm !important;
-    box-sizing: border-box !important;
-    border-bottom: 2px solid black !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-
-    page-break-inside: avoid !important;
-  }
-
-  /* 🔑 QUEBRA SOMENTE APÓS A 3ª ETIQUETA */
-  .etiqueta-box:nth-of-type(3n) {
-    page-break-after: always !important;
-  }
-
-  .btn-close-green,
-  .btn-imprimir-destaque,
-  .modal-header,
-  .modal-footer-acoes {
-    display: none !important;
-  }
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
+/* Botão principal */
+.btn-gerar {
+  background: #21ae6f;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+/* Hover */
+.btn-gerar:hover {
+  background: #1b965e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Clique */
+.btn-gerar:active {
+  transform: scale(0.98);
+}

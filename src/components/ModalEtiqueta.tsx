@@ -1,5 +1,6 @@
 import ReactBarcode from 'react-barcode';
 import './ModalEtiqueta.css';
+import { gerarEtiquetaPdf } from '../pdf/etiquetaPdf';
 
 interface Props {
   isOpen: boolean;
@@ -80,12 +81,13 @@ const ModalEtiqueta = ({ isOpen, onClose, dados }: Props) => {
           ))}
         </div>
 
-        <div className="modal-footer-acoes">
+        <div className="modal-actions">
+   
           <button
-            className="btn-imprimir-destaque"
-            onClick={() => window.print()}
+            className="btn-gerar"
+            onClick={() => gerarEtiquetaPdf(dados, totalVolumes)}
           >
-            🖨️ IMPRIMIR {totalVolumes} ETIQUETA{totalVolumes > 1 ? 'S' : ''}
+            GERAR ETIQUETA
           </button>
         </div>
 
