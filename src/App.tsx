@@ -1,4 +1,5 @@
 
+import Footer from './components/footer/Footer'
 import Home from './page/home'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
      <Home/>
+     <Footer/>
     </>
   )
 }

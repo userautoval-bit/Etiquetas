@@ -22,7 +22,21 @@ function Home() {
   };
 
   return (
+
+
     <div className="home-container">
+
+      
+       {/* 🎥 VIDEO BACKGROUND */}
+      <video autoPlay muted loop playsInline className="video-bg">
+        <source
+          src="https://ik.imagekit.io/wuhybmc8j/6914714_Motion_Graphics_Motion_Graphic_1920x1080.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* 🌑 Overlay opcional para escurecer */}
+      <div className="video-overlay"></div>
   <img
     src="https://ik.imagekit.io/wuhybmc8j/cropped-logo-autoval-correto-1-1.png"
     alt="Autoval"
